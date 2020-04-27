@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class AddData extends StatefulWidget {
+class AddKategori extends StatefulWidget {
 
   
-  AddData({Key key}) : super(key: key);
+  AddKategori({Key key}) : super(key: key);
 
   @override
-  _AddDataState createState() => _AddDataState();
+  _AddKategoriState createState() => _AddKategoriState();
 }
 
-class _AddDataState extends State<AddData> {
-  TextEditingController controllerNama = new TextEditingController();
+class _AddKategoriState extends State<AddKategori> {
+  TextEditingController controllerNamaKategori = new TextEditingController();
   TextEditingController controllerSatuan = new TextEditingController();
-  TextEditingController controllerNilai = new TextEditingController();
+  TextEditingController controllerNilaiKategori = new TextEditingController();
 
-  void addData(){
-    var url ="http://192.168.1.6/trashmee/adddata.php";
+  void AddKategori(){
+    var url ="http://192.168.1.6/trashmee/addkategori.php";
     http.post(url, body:{
 
-      "nama_barang": controllerNama.text, 
+      "nama_kategori": controllerNamaKategori.text, 
       "satuan" : controllerSatuan.text,
-      "nilai_poin" : controllerNilai.text
+      "nilai_kategori" : controllerNilaiKategori.text
 
     });
   }
@@ -37,10 +37,10 @@ class _AddDataState extends State<AddData> {
           child: Column(
             children: <Widget>[
               new TextField(
-                controller: controllerNama,
+                controller: controllerNamaKategori,
                 decoration: new InputDecoration(
-                  hintText: "Nama Barang",
-                  labelText: "Nama Barang",
+                  hintText: "Nama Kategori",
+                  labelText: "Nama Kategori",
                 ),
               ),
               new TextField(
@@ -51,7 +51,7 @@ class _AddDataState extends State<AddData> {
                 ),
               ),
               new TextField(
-                controller: controllerNilai,
+                controller: controllerNilaiKategori,
                 decoration: new InputDecoration(
                   hintText: "Nilai Poin",
                   labelText: "Nilai Poin",
@@ -65,7 +65,7 @@ class _AddDataState extends State<AddData> {
                 color: Colors.blueAccent,
                 textColor: Colors.white,
                 onPressed: () {
-                  addData();
+                  AddKategori();
                   Navigator.pop(context);
                 },
               )

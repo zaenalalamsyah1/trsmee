@@ -1,41 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import './main.dart';
+import 'package:trsmee/kategoriview.dart';
 
-class EditData extends StatefulWidget {
+class EditKategori extends StatefulWidget {
 
   final List list;
   final int index;
 
-  EditData({this.list, this.index});
+  EditKategori({this.list, this.index});
 
   @override
-  _EditDataState createState() => _EditDataState();
+  _EditKategoriState createState() => _EditKategoriState();
   
 }
 
-class _EditDataState extends State<EditData> {
+class _EditKategoriState extends State<EditKategori> {
 
-  TextEditingController controllerNama;
+  TextEditingController controllerNamaKategori;
   TextEditingController controllerSatuan;
-  TextEditingController controllerNilai;
+  TextEditingController controllerNilaiKategori;
 
-void editData(){
-  var url = "http://192.168.1.6/trashmee/editdata.php";
+void EditKategori(){
+  var url = "http://192.168.1.6/trashmee/kategoriedit.php";
   http.post(url, body : {
-    "id_barang" : widget.list[widget.index]['id_barang'],
-    "nama_barang" : controllerNama.text,
+    "id_kategori" : widget.list[widget.index]['id_kategori'],
+    "nama_kategori" : controllerNamaKategori.text,
     "satuan" : controllerSatuan.text,
-    "nilai_poin" : controllerNilai.text
+    "nilai_kategori" : controllerNilaiKategori.text
   });
   
 }
 
 @override
   void initState() {
-    controllerNama = new TextEditingController(text: widget.list[widget.index]['nama_barang']);
+    controllerNamaKategori = new TextEditingController(text: widget.list[widget.index]['nama_kategori']);
     controllerSatuan = new TextEditingController(text : widget.list[widget.index]['satuan']);
-    controllerNilai = new TextEditingController(text : widget.list[widget.index]['nilai_poin']);
+    controllerNilaiKategori = new TextEditingController(text : widget.list[widget.index]['nilai_kategori']);
     super.initState();
   }
 
@@ -48,10 +48,10 @@ void editData(){
           child: Column(
             children: <Widget>[
               new TextField(
-                controller: controllerNama,
+                controller: controllerNamaKategori,
                 decoration: new InputDecoration(
-                  hintText: "Nama Barang",
-                  labelText: "Nama Barang",
+                  hintText: "Nama Kategori",
+                  labelText: "Nama Kategori",
                 ),
               ),
               new TextField(
@@ -62,10 +62,10 @@ void editData(){
                 ),
               ),
               new TextField(
-                controller: controllerNilai,
+                controller: controllerNilaiKategori,
                 decoration: new InputDecoration(
-                  hintText: "Nilai Poin",
-                  labelText: "Nilai Poin",
+                  hintText: "Nilai Kategori",
+                  labelText: "Nilai Kategori",
                 ),
               ),
               new Padding(
@@ -76,10 +76,10 @@ void editData(){
                 color: Colors.blueAccent,
                 textColor: Colors.white,
                 onPressed: () {
-                  editData();
+                  EditKategori();
                   Navigator.of(context).push(
                     new MaterialPageRoute(
-                      builder : (BuildContext context) => new Home()
+                      builder : (BuildContext context) => new Category()
                     )
                   );
                 },
