@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:trsmee/editkategori.dart';
-import './editdata.dart';
 import 'package:http/http.dart' as http;
 import './kategoriview.dart';
 

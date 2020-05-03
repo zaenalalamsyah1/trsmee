@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
+import 'package:trsmee/pengepulview.dart';
 import './detail.dart';
 import './adddata.dart';
 import './kategoriview.dart';
+import './pengepulview.dart';
 
 
 // ini main
@@ -33,6 +35,14 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: new AppBar(
         title: Text("Barang"),
+                actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.home, color: Colors.white),
+             onPressed: () => Navigator.of(context).push(
+               new MaterialPageRoute(builder: (BuildContext context) => new Dashboard())
+             )
+             )
+        ],
       ),
       floatingActionButton: new FloatingActionButton(
         child: new Icon(Icons.add),
@@ -224,7 +234,9 @@ class _DashboardState extends State<Dashboard> {
                                       icon: Icon(Icons.person),
                                       color: Colors.blue,
                                       iconSize: 30.0,
-                                      onPressed: () {},
+                                      onPressed: () => Navigator.of(context).push(
+                                        new MaterialPageRoute(builder: (BuildContext context) => new Pengepul())
+                                      )
                                     ),
                                   ),
                                   SizedBox(height: 8.0),

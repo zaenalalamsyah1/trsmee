@@ -3,19 +3,20 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:trsmee/main.dart';
-import './AddKategori.dart';
-import './detailkategori.dart';
+import 'package:trsmee/pengepuladd.dart';
+import 'package:trsmee/pengepuldetail.dart';
+import './main.dart';
 
-class Category extends StatefulWidget {
+
+class Pengepul extends StatefulWidget {
   @override
-  _CategoryState createState() => new _CategoryState();
+  _PengepulState createState() => new _PengepulState();
 }
 
-//class CategoryState
-class _CategoryState extends State<Category> {
+//class PengepulState
+class _PengepulState extends State<Pengepul> {
   Future<List> getData() async {
-    final response = await http.get("http://192.168.1.6/trashmee/viewkategori.php");
+    final response = await http.get("http://192.168.1.6/trashmee/pengepul/pengepulview.php");
     return json.decode(response.body);
   }
 
@@ -23,8 +24,8 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: Text("Kategori"),
-        actions: <Widget>[
+        title: Text("Pengepul"),
+                actions: <Widget>[
           IconButton(
             icon: Icon(Icons.home, color: Colors.white),
              onPressed: () => Navigator.of(context).push(
@@ -36,7 +37,7 @@ class _CategoryState extends State<Category> {
       floatingActionButton: new FloatingActionButton(
         child: new Icon(Icons.add),
         onPressed: () => Navigator.of(context).push(new MaterialPageRoute(
-          builder: (BuildContext context) => new AddKategori(),
+          builder: (BuildContext context) => new AddPengepul(),
         )),
       ),
       body: FutureBuilder<List>(
@@ -69,16 +70,16 @@ class ItemList extends StatelessWidget {
           padding: const EdgeInsets.all(5.0),
           child: new GestureDetector(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-              builder: (BuildContext context) => new DetailKategori(
+              builder: (BuildContext context) => new PengepulDetail(
                 list: list,
                 index: i,
               ),
             )),
             child: new Card(
               child: new ListTile(
-                title: new Text(list[i]['nama_kategori']),
-                leading: new Icon(Icons.widgets),
-                subtitle: new Text("Poin : ${list[i]['nilai_kategori']}"),
+                title: new Text(list[i]['nama_lengkap']),
+                leading: new Icon(Icons.person),
+                subtitle: new Text("No.Tlp : ${list[i]['no_tlp']}"),
               ),
             ),
           ),
